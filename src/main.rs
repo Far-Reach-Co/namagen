@@ -20,8 +20,8 @@ fn main() {
     match current_language {
         "List" => println!("{:?}", language_list),
         "Mamobibu" => crate::mamobibu::mamobibu(),
-        "Saurian" => println!("Generating a name in the {current_language} language..."),
-        "Wyr" => println!("Generating a name in the {current_language} language..."),
+        "Saurian" => println!("Generating a name in the {current_language} language... NOT YET IMPLEMENTED"),
+        "Wyr" => println!("Generating a name in the {current_language} language... NOT YET IMPLEMENTED"),
         _ => println!("Language '{current_language}' not found! Enter 'List' for a list of available langauges"),
     }
 }
