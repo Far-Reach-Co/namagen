@@ -16,21 +16,15 @@ pub fn greet() -> String {
 pub fn main(language_input: &str) -> String {
     let language_list = "Mamobibu, Saurian, Wyr";
 
-    let language_input = language_input.trim();
+    let binding = language_input.to_lowercase();
+    let language_input = binding.trim();
 
     match language_input {
-        "List" => language_list.to_string(),
-        "Mamobibu" => crate::mamobibu::mamobibu(),
-        "Saurian" => {
-            "Generating a name in the {language_input} language... NOT YET IMPLEMENTED".to_string()
-        }
+        "list" => language_list.to_string(),
+        "mamobibu" => crate::mamobibu::mamobibu(),
+        "saurian" => "Generating a name in the Saurian language... NOT YET IMPLEMENTED".to_string(),
 
-        "Wyr" => {
-            "Generating a name in the {language_input} language... NOT YET IMPLEMENTED".to_string()
-        }
-        _ => {
-            "Language '{language_input}' not found! Enter 'List' for a list of available langauges"
-                .to_string()
-        }
+        "wyr" => "Generating a name in the Wyr language... NOT YET IMPLEMENTED".to_string(),
+        _ => "Language not found! Enter 'List' for a list of available langauges".to_string(),
     }
 }
