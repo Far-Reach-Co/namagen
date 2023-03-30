@@ -14,10 +14,6 @@ pub fn greet() -> String {
 
 #[wasm_bindgen]
 pub fn main(language_input: &str) -> String {
-    {
-        alert(&format!("Hello, World!"))
-    };
-
     let language_list = "Mamobibu, Saurian, Wyr";
 
     let language_input = language_input.trim();
