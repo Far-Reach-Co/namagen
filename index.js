@@ -6,7 +6,7 @@ init().then(() => {
   const userInput = document.getElementById("userInput");
   const enterButton = document.getElementById("enterButton");
 
-  greeting.textContent = greet();
+  //   greeting.textContent = greet();
 
   userInput.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
