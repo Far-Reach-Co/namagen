@@ -1,3 +1,5 @@
+mod mamobibu;
+
 use std::io;
 
 fn main() {
@@ -7,7 +9,7 @@ fn main() {
 
     let mut current_language = String::new();
 
-    let language_list = ["Saurian", "Wyr"];
+    let language_list = ["Mamobibu", "Saurian", "Wyr"];
 
     io::stdin()
         .read_line(&mut current_language)
@@ -17,6 +19,7 @@ fn main() {
 
     match current_language {
         "List" => println!("{:?}", language_list),
+        "Mamobibu" => crate::mamobibu::mamobibu(),
         "Saurian" => println!("Generating a name in the {current_language} language..."),
         "Wyr" => println!("Generating a name in the {current_language} language..."),
         _ => println!("Language '{current_language}' not found! Enter 'List' for a list of available langauges"),
