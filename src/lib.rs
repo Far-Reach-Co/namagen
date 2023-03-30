@@ -1,6 +1,5 @@
 pub mod generate_syllable_based_name;
 mod mamobibu;
-use std::io;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -9,29 +8,33 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn main() {
-    println!("Choose a language to generate a name in!");
-    println!("Please enter the name of a language");
-    println!("Enter 'List' for a list of available languages");
+pub fn greet() -> String {
+    "Choose a language to generate a name in! Please enter the name of a language or enter 'List' for a list of available languages".to_string()
+}
+
+#[wasm_bindgen]
+pub fn main(language_input: &str) -> String {
     {
         alert(&format!("Hello, World!"))
     };
 
-    let mut current_language = String::new();
+    let language_list = "Mamobibu, Saurian, Wyr";
 
-    let language_list = ["Mamobibu", "Saurian", "Wyr"];
+    let language_input = language_input.trim();
 
-    io::stdin()
-        .read_line(&mut current_language)
-        .expect("Failed to read line");
-
-    let current_language: &str = &current_language.trim();
-
-    match current_language {
-        "List" => println!("{:?}", language_list),
+    match language_input {
+        "List" => language_list.to_string(),
         "Mamobibu" => crate::mamobibu::mamobibu(),
-        "Saurian" => println!("Generating a name in the {current_language} language... NOT YET IMPLEMENTED"),
-        "Wyr" => println!("Generating a name in the {current_language} language... NOT YET IMPLEMENTED"),
-        _ => println!("Language '{current_language}' not found! Enter 'List' for a list of available langauges"),
+        "Saurian" => {
+            "Generating a name in the {language_input} language... NOT YET IMPLEMENTED".to_string()
+        }
+
+        "Wyr" => {
+            "Generating a name in the {language_input} language... NOT YET IMPLEMENTED".to_string()
+        }
+        _ => {
+            "Language '{language_input}' not found! Enter 'List' for a list of available langauges"
+                .to_string()
+        }
     }
 }

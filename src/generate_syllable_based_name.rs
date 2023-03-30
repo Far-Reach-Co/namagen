@@ -4,7 +4,7 @@ pub fn generate_syllable_based_name(
     consonant_inventory: String,
     vowel_inventory: String,
     syllables_per_name: i32,
-) {
+) -> String {
     let mut rng = rand::thread_rng();
 
     let mut generated_name = String::from("");
@@ -36,5 +36,5 @@ pub fn generate_syllable_based_name(
         generated_syllables += 1
     }
 
-    println!("{generated_name}")
+    generated_name.to_string()
 }
