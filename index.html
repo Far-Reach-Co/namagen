@@ -2,15 +2,11 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
+    <script type="module" src="./index.js" defer></script>
     <title>Namagen</title>
     <link rel="icon" type="image/x-icon" href="./test.svg" />
   </head>
   <body>
-    <script type="module">
-      import init, { main } from "./pkg/namagen.js";
-      init().then(() => {
-        main();
-      });
-    </script>
+    <div id="exampleText"></div>
   </body>
 </html>
