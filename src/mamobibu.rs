@@ -9,7 +9,7 @@ pub fn mamobibu() {
     let mut rng = rand::thread_rng();
 
     let mut generated_name = String::from("");
-    // generated_name.push_str("Mamobibu");
+
     let random_consonant: String = consonant_inventory
         .chars()
         .choose(&mut rng)
@@ -19,7 +19,6 @@ pub fn mamobibu() {
     generated_name.push_str(&random_consonant);
 
     let mut generated_syllables = 0;
-
     while generated_syllables < syllables_per_name {
         let random_vowel: String = vowel_inventory
             .chars()
