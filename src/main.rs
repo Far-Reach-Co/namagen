@@ -1,5 +1,5 @@
+pub mod generate_syllable_based_name;
 mod mamobibu;
-
 use std::io;
 
 fn main() {
