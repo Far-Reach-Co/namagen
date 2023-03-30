@@ -1,11 +1,21 @@
 pub mod generate_syllable_based_name;
 mod mamobibu;
 use std::io;
+use wasm_bindgen::prelude::*;
 
-fn main() {
+#[wasm_bindgen]
+extern "C" {
+    pub fn alert(s: &str);
+}
+
+#[wasm_bindgen]
+pub fn main() {
     println!("Choose a language to generate a name in!");
     println!("Please enter the name of a language");
     println!("Enter 'List' for a list of available languages");
+    {
+        alert(&format!("Hello, World!"))
+    };
 
     let mut current_language = String::new();
 
