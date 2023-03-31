@@ -2,6 +2,7 @@ pub mod generate_syllable_based_name;
 mod mamobibu;
 use wasm_bindgen::prelude::*;
 
+// Just a reminder to myself of how to do this
 #[wasm_bindgen]
 extern "C" {
     pub fn alert(s: &str);
