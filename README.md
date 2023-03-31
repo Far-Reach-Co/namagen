@@ -1,8 +1,10 @@
 # Namagen
 A fantasy name generator for constructed languages
 
-Currently console-based, but that is likely to change
+Currently a very simple program - it takes a string and returns a string
 
-[Download the binary](https://github.com/Far-Reach-Co/namagen/blob/navel/bin/namagen) (or build it yourself) and run it, then follow the instructions on the console. Very simple ^_^
+Choose a language to generate a name in by inputting the name of a language. Input 'List' for a list of available languages
+
+[Try the current build here!](https://far-reach-co.github.io/namagen/) ^_^
 
 Currently only one test language and one name type (with no options) are implemented
