@@ -1,14 +1,25 @@
 {
   "name": "namagen",
+  "collaborators": [
+    "Kyle Beechly <contact@kaBeech.com>"
+  ],
+  "description": "A fantasy name generator for constructed languages",
   "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Far-Reach-Co/namagen"
+  },
   "files": [
     "namagen_bg.wasm",
     "namagen.js",
+    "namagen_bg.js",
     "namagen.d.ts"
   ],
   "module": "namagen.js",
   "types": "namagen.d.ts",
   "sideEffects": [
+    "./namagen.js",
     "./snippets/*"
   ]
 }
