@@ -13,7 +13,7 @@ pub fn greet() -> String {
 }
 
 #[wasm_bindgen]
-pub fn main(language_input: &str) -> String {
+pub fn namagen(language_input: &str) -> String {
     let language_list = "Mamobibu, Saurian, Wyr";
 
     let binding = language_input.to_lowercase();

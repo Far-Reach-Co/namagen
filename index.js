@@ -1,4 +1,4 @@
-import init, { main, greet } from "./pkg/namagen.js";
+import init, { namagen, greet } from "./pkg/namagen.js";
 
 init().then(() => {
   const greeting = document.getElementById("greeting");
@@ -10,11 +10,11 @@ init().then(() => {
 
   userInput.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
-      message.textContent = main(userInput.value);
+      message.textContent = namagen(userInput.value);
     }
   });
 
   enterButton.addEventListener("click", () => {
-    message.textContent = main(userInput.value);
+    message.textContent = namagen(userInput.value);
   });
 });

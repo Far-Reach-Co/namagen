@@ -128,12 +128,12 @@ function passStringToWasm0(arg, malloc, realloc) {
 * @param {string} language_input
 * @returns {string}
 */
-export function main(language_input) {
+export function namagen(language_input) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(language_input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.main(retptr, ptr0, len0);
+        wasm.namagen(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         return getStringFromWasm0(r0, r1);
