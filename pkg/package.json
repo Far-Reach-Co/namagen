@@ -1,0 +1,14 @@
+{
+  "name": "namagen",
+  "version": "0.1.0",
+  "files": [
+    "namagen_bg.wasm",
+    "namagen.js",
+    "namagen.d.ts"
+  ],
+  "module": "namagen.js",
+  "types": "namagen.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
