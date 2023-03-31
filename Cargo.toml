@@ -1,6 +1,10 @@
 [package]
 name = "namagen"
-version = "0.1.0"
+authors = ["Kyle Beechly <contact@kaBeech.com>"]
+description = "A fantasy name generator for constructed languages"
+license = "MIT"
+repository = "https://github.com/Far-Reach-Co/namagen"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
