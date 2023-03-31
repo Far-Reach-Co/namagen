@@ -4,7 +4,7 @@
     "Kyle Beechly <contact@kaBeech.com>"
   ],
   "description": "A fantasy name generator for constructed languages",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,13 +13,11 @@
   "files": [
     "namagen_bg.wasm",
     "namagen.js",
-    "namagen_bg.js",
     "namagen.d.ts"
   ],
   "module": "namagen.js",
   "types": "namagen.d.ts",
   "sideEffects": [
-    "./namagen.js",
     "./snippets/*"
   ]
 }
