@@ -1,5 +1,6 @@
 pub mod generate_syllable_based_name;
 mod mamobibu;
+use crate::generate_syllable_based_name::generate_syllable_based_name;
 use wasm_bindgen::prelude::*;
 
 // Just a reminder to myself of how to do this
@@ -28,4 +29,20 @@ pub fn namagen(language_input: &str) -> String {
         "wyr" => "Generating a name in the Wyr language... NOT YET IMPLEMENTED".to_string(),
         _ => "Language not found! Enter 'List' for a list of available langauges".to_string(),
     }
+}
+
+#[wasm_bindgen]
+pub fn gen_custom_simple_name(
+    consonant_inventory: String,
+    vowel_inventory: String,
+    syllables_per_name: i32,
+) -> String {
+    let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
+    let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
+    "Generating a name in your custom language: ".to_owned()
+        + &generate_syllable_based_name(
+            consonant_inventory.to_owned(),
+            vowel_inventory.to_owned(),
+            syllables_per_name,
+        )
 }
