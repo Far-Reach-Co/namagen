@@ -2,6 +2,7 @@ pub mod generate_syllable_based_name;
 mod mamobibu;
 use crate::generate_syllable_based_name::generate_syllable_based_name;
 use wasm_bindgen::prelude::*;
+pub mod generate_simple_syllable;
 
 // Just a reminder to myself of how to do this
 #[wasm_bindgen]

@@ -1,3 +1,4 @@
+use crate::generate_simple_syllable::generate_simple_syllable;
 use rand::seq::SliceRandom;
 
 pub fn generate_syllable_based_name(
@@ -18,11 +19,9 @@ pub fn generate_syllable_based_name(
 
     let mut generated_syllables = 0;
     while generated_syllables < syllables_per_name {
-        let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_vowel);
-
-        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_consonant);
+        let generated_syllable: String =
+            generate_simple_syllable(consonant_inventory.clone(), vowel_inventory.clone());
+        generated_name.push_str(&generated_syllable);
 
         generated_syllables += 1
     }
