@@ -1,6 +1,6 @@
 use crate::generate_syllable_based_name::generate_syllable_based_name;
 
-pub fn mamobibu() -> String {
+pub fn gen_mamobibu_name() -> String {
     let consonant_inventory = vec!["m", "b"];
     let vowel_inventory = vec!["a", "e", "i", "o", "u"];
     let syllables_per_name = 4;

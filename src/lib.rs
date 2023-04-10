@@ -1,7 +1,7 @@
+mod gen_mamobibu_name;
 pub mod generate_syllable_based_name;
-mod mamobibu;
 use crate::generate_syllable_based_name::generate_syllable_based_name;
-use mamobibu::mamobibu;
+use gen_mamobibu_name::gen_mamobibu_name;
 use wasm_bindgen::prelude::*;
 pub mod generate_simple_syllable;
 
@@ -25,7 +25,7 @@ pub fn namagen(language_input: &str) -> String {
 
     match language_input {
         "list" => language_list.to_string(),
-        "mamobibu" => crate::mamobibu::mamobibu(),
+        "mamobibu" => crate::gen_mamobibu_name::gen_mamobibu_name(),
         "saurian" => "Generating a name in the Saurian language... NOT YET IMPLEMENTED".to_string(),
 
         "wyr" => "Generating a name in the Wyr language... NOT YET IMPLEMENTED".to_string(),
@@ -50,6 +50,6 @@ pub fn gen_custom_simple_name(
 }
 
 #[wasm_bindgen]
-pub fn gen_mamobibu() -> String {
-    mamobibu()
+pub fn mamobibu() -> String {
+    gen_mamobibu_name()
 }
