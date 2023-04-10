@@ -1,9 +1,6 @@
 use rand::seq::SliceRandom;
 
-pub fn generate_simple_syllable(
-    consonant_inventory: Vec<&str>,
-    vowel_inventory: Vec<&str>,
-) -> String {
+pub fn gen_simple_syllable(consonant_inventory: Vec<&str>, vowel_inventory: Vec<&str>) -> String {
     let mut rng = rand::thread_rng();
 
     let mut generated_syllable = String::from("");
