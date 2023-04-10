@@ -3,10 +3,10 @@ use rand::{random, seq::SliceRandom, thread_rng};
 
 pub fn gen_saurian_name() -> String {
     let consonant_inventory = vec![
-        "'", "p", "j", "d", "h", "w", "z", "ħ", "ṭ", "y", "k", "l", "v", "n", "s", "ƹ", "f", "ṣ",
-        "q", "r", "š", "t", "θ", "x", "ð", "ḍ", "ẓ", "ɣ",
+        "'", "p", "j", "d", "h", "w", "z", "ħ", "ṭ", "y", "k", "l", "n", "s", "ƹ", "f", "ṣ", "q",
+        "r", "š", "t", "θ", "x", "ð", "ḍ", "ẓ", "ɣ",
     ];
-    let vowel_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩"];
+    let vowel_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩", "š̩"];
     let mut rng = thread_rng();
     let syllables_per_name = rng.gen_range(1..5);
     let mut most_recent_grapheme = "";
