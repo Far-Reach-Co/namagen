@@ -11,7 +11,7 @@ pub fn gen_simple_name(
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_name = String::from("");
 
-    // gen first letter
+    // Generate first letter
     if random() {
         let random_consonant: String = consonant_inventory
             .choose(&mut rng)

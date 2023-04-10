@@ -14,7 +14,7 @@ pub fn gen_saurian_name() -> String {
     let mut generated_syllables = 0;
     let mut generated_name = String::from("");
 
-    // gen first letter
+    // Generate first letter
     if random() {
         let random_consonant: String = consonant_inventory
             .choose(&mut rng)
