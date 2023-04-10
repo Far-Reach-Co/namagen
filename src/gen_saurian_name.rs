@@ -5,6 +5,5 @@ pub fn gen_saurian_name() -> String {
     let vowel_inventory = vec!["a", "i", "u"];
     let syllables_per_name = 3;
 
-    "Generating a name in the Mamobibu language: ".to_owned()
-        + &generate_syllable_based_name(consonant_inventory, vowel_inventory, syllables_per_name)
+    generate_syllable_based_name(consonant_inventory, vowel_inventory, syllables_per_name)
 }

@@ -25,7 +25,10 @@ pub fn namagen(language_input: &str) -> String {
 
     match language_input {
         "list" => language_list.to_string(),
-        "mamobibu" => crate::gen_mamobibu_name::gen_mamobibu_name(),
+        "mamobibu" => {
+            "Generating a name in the Mamobibu language: ".to_owned()
+                + &crate::gen_mamobibu_name::gen_mamobibu_name()
+        }
         "saurian" => "Generating a name in the Saurian language... NOT YET IMPLEMENTED".to_string(),
 
         "wyr" => "Generating a name in the Wyr language... NOT YET IMPLEMENTED".to_string(),
@@ -41,12 +44,11 @@ pub fn gen_custom_simple_name(
 ) -> String {
     let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
     let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
-    "Generating a name in your custom language: ".to_owned()
-        + &generate_syllable_based_name(
-            consonant_inventory.to_owned(),
-            vowel_inventory.to_owned(),
-            syllables_per_name,
-        )
+    generate_syllable_based_name(
+        consonant_inventory.to_owned(),
+        vowel_inventory.to_owned(),
+        syllables_per_name,
+    )
 }
 
 #[wasm_bindgen]
