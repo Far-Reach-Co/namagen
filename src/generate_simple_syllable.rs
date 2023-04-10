@@ -8,18 +8,11 @@ pub fn generate_simple_syllable(
 
     let mut generated_syllable = String::from("");
 
-    let random_consonant: String = consonant_inventory
-        .choose(&mut rng)
-        .unwrap()
-        .to_string()
-        .to_uppercase();
+    let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
     generated_syllable.push_str(&random_consonant);
 
     let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
     generated_syllable.push_str(&random_vowel);
-
-    let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-    generated_syllable.push_str(&random_consonant);
 
     generated_syllable.to_string()
 }

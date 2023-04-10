@@ -17,7 +17,10 @@ pub fn generate_syllable_based_name(
         .to_uppercase();
     generated_name.push_str(&random_consonant);
 
-    let mut generated_syllables = 0;
+    let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
+    generated_name.push_str(&random_vowel);
+
+    let mut generated_syllables = 1;
     while generated_syllables < syllables_per_name {
         let generated_syllable: String =
             generate_simple_syllable(consonant_inventory.clone(), vowel_inventory.clone());
@@ -25,6 +28,9 @@ pub fn generate_syllable_based_name(
 
         generated_syllables += 1
     }
+
+    let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
+    generated_name.push_str(&random_consonant);
 
     generated_name.to_string()
 }
