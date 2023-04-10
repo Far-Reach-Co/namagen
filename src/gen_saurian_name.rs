@@ -17,6 +17,7 @@ pub fn gen_saurian_name() -> String {
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
 
+    // gen first letter
     let random_consonant: String = consonant_inventory
         .choose(&mut rng)
         .unwrap()
@@ -35,13 +36,23 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "vowel";
     };
 
+    // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
+    if most_recent_grapheme == "consonant" {
+        let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
+        generated_name.push_str(&random_vowel);
+        generated_syllables += 1;
+        most_recent_grapheme = "vowel";
+    }
+
+    // Add second (or third) letter
     if random() {
         let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
         generated_name.push_str(&random_vowel);
-        if most_recent_grapheme == "vowel" {
-            two_vowels_or_consonants_in_a_row = true
-        } else {
+        if most_recent_grapheme == "consonant" {
+            generated_syllables += 1;
             most_recent_grapheme = "vowel";
+        } else {
+            two_vowels_or_consonants_in_a_row = true
         }
     } else {
         let random_consonant: String = consonant_inventory
@@ -56,6 +67,9 @@ pub fn gen_saurian_name() -> String {
             most_recent_grapheme = "consonant";
         }
     }
+
+    // Add another letter based on current string
+    if two_vowels_or_consonants_in_a_row == true {}
 
     generated_name.to_string()
 }
