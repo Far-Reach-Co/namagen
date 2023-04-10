@@ -1,4 +1,5 @@
-use rand::{random, seq::SliceRandom};
+use rand::Rng;
+use rand::{random, seq::SliceRandom, thread_rng};
 
 pub fn gen_saurian_name() -> String {
     let consonant_inventory = vec![
@@ -6,15 +7,12 @@ pub fn gen_saurian_name() -> String {
         "q", "r", "š", "t", "θ", "x", "ð", "ḍ", "ẓ", "ɣ",
     ];
     let vowel_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩"];
-    let syllables_per_name = 3;
-
-    let mut rng = rand::thread_rng();
-
-    let mut generated_name = String::from("");
-
+    let mut rng = thread_rng();
+    let syllables_per_name = rng.gen_range(1..5);
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
+    let mut generated_name = String::from("");
 
     // gen first letter
     if random() {
@@ -54,7 +52,7 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "vowel";
     }
 
-    // Add another letter based on current string
+    // Add letters until syllable count is reached
     while generated_syllables < syllables_per_name {
         if two_vowels_or_consonants_in_a_row == true {
             if most_recent_grapheme == "consonant" {
