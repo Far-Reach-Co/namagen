@@ -1,5 +1,12 @@
-pub mod generate_syllable_based_name;
-mod mamobibu;
+mod gen_mamobibu_name;
+mod gen_saurian_name;
+mod gen_simple_name;
+mod gen_simple_syllable;
+mod gen_syllabic_name;
+use crate::gen_syllabic_name::gen_syllabic_name;
+use gen_mamobibu_name::gen_mamobibu_name;
+use gen_saurian_name::gen_saurian_name;
+use gen_simple_name::gen_simple_name;
 use wasm_bindgen::prelude::*;
 
 // Just a reminder to myself of how to do this
@@ -22,10 +29,53 @@ pub fn namagen(language_input: &str) -> String {
 
     match language_input {
         "list" => language_list.to_string(),
-        "mamobibu" => crate::mamobibu::mamobibu(),
+        "mamobibu" => {
+            "Generating a name in the Mamobibu language: ".to_owned()
+                + &crate::gen_mamobibu_name::gen_mamobibu_name()
+        }
         "saurian" => "Generating a name in the Saurian language... NOT YET IMPLEMENTED".to_string(),
 
         "wyr" => "Generating a name in the Wyr language... NOT YET IMPLEMENTED".to_string(),
         _ => "Language not found! Enter 'List' for a list of available langauges".to_string(),
     }
+}
+
+#[wasm_bindgen]
+pub fn custom_simple_name(
+    consonant_inventory: String,
+    vowel_inventory: String,
+    syllables_per_name: i32,
+) -> String {
+    let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
+    let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
+    gen_simple_name(
+        consonant_inventory.to_owned(),
+        vowel_inventory.to_owned(),
+        syllables_per_name,
+    )
+}
+
+#[wasm_bindgen]
+pub fn custom_syllabic_name(
+    consonant_inventory: String,
+    vowel_inventory: String,
+    syllables_per_name: i32,
+) -> String {
+    let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
+    let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
+    gen_syllabic_name(
+        consonant_inventory.to_owned(),
+        vowel_inventory.to_owned(),
+        syllables_per_name,
+    )
+}
+
+#[wasm_bindgen]
+pub fn mamobibu() -> String {
+    gen_mamobibu_name()
+}
+
+#[wasm_bindgen]
+pub fn saurian() -> String {
+    gen_saurian_name()
 }
