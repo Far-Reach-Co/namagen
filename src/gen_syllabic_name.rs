@@ -1,7 +1,7 @@
 use crate::gen_simple_syllable::gen_simple_syllable;
 use rand::seq::SliceRandom;
 
-pub fn gen_syllable_based_name(
+pub fn gen_syllabic_name(
     consonant_inventory: Vec<&str>,
     vowel_inventory: Vec<&str>,
     syllables_per_name: i32,
