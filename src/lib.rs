@@ -1,6 +1,7 @@
 pub mod generate_syllable_based_name;
 mod mamobibu;
 use crate::generate_syllable_based_name::generate_syllable_based_name;
+use mamobibu::mamobibu;
 use wasm_bindgen::prelude::*;
 pub mod generate_simple_syllable;
 
@@ -46,4 +47,9 @@ pub fn gen_custom_simple_name(
             vowel_inventory.to_owned(),
             syllables_per_name,
         )
+}
+
+#[wasm_bindgen]
+pub fn gen_mamobibu() -> String {
+    mamobibu()
 }
