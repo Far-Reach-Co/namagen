@@ -1,4 +1,3 @@
-use crate::gen_simple_syllable::gen_simple_syllable;
 use rand::{random, seq::SliceRandom};
 
 pub fn gen_saurian_name() -> String {
@@ -55,40 +54,42 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "vowel";
     }
 
-    // Add second (or third) letter
-    if random() {
-        let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_vowel);
-        if most_recent_grapheme == "consonant" {
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
-        } else {
-            two_vowels_or_consonants_in_a_row = true
-        }
-    } else {
-        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_consonant);
-        if most_recent_grapheme == "consonant" {
-            two_vowels_or_consonants_in_a_row = true
-        } else {
-            most_recent_grapheme = "consonant";
-        }
-    }
-
     // Add another letter based on current string
-    if two_vowels_or_consonants_in_a_row == true {
-        if most_recent_grapheme == "consonant" {
-            let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-            generated_name.push_str(&random_vowel);
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
-            two_vowels_or_consonants_in_a_row = false;
+    while generated_syllables < syllables_per_name {
+        if two_vowels_or_consonants_in_a_row == true {
+            if most_recent_grapheme == "consonant" {
+                let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
+                generated_name.push_str(&random_vowel);
+                generated_syllables += 1;
+                most_recent_grapheme = "vowel";
+                two_vowels_or_consonants_in_a_row = false;
+            } else {
+                let random_consonant: String =
+                    consonant_inventory.choose(&mut rng).unwrap().to_string();
+                generated_name.push_str(&random_consonant);
+                most_recent_grapheme = "consonant";
+                two_vowels_or_consonants_in_a_row = false;
+            }
         } else {
-            let random_consonant: String =
-                consonant_inventory.choose(&mut rng).unwrap().to_string();
-            generated_name.push_str(&random_consonant);
-            most_recent_grapheme = "consonant";
-            two_vowels_or_consonants_in_a_row = false;
+            if random() {
+                let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
+                generated_name.push_str(&random_vowel);
+                if most_recent_grapheme == "consonant" {
+                    generated_syllables += 1;
+                    most_recent_grapheme = "vowel";
+                } else {
+                    two_vowels_or_consonants_in_a_row = true
+                }
+            } else {
+                let random_consonant: String =
+                    consonant_inventory.choose(&mut rng).unwrap().to_string();
+                generated_name.push_str(&random_consonant);
+                if most_recent_grapheme == "consonant" {
+                    two_vowels_or_consonants_in_a_row = true
+                } else {
+                    most_recent_grapheme = "consonant";
+                }
+            }
         }
     }
 
