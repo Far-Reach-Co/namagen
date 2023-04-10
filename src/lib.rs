@@ -1,9 +1,11 @@
 mod gen_mamobibu_name;
-pub mod gen_syllable_based_name;
+mod gen_saurian_name;
+mod gen_simple_syllable;
+mod gen_syllable_based_name;
 use crate::gen_syllable_based_name::gen_syllable_based_name;
 use gen_mamobibu_name::gen_mamobibu_name;
+use gen_saurian_name::gen_saurian_name;
 use wasm_bindgen::prelude::*;
-pub mod gen_simple_syllable;
 
 // Just a reminder to myself of how to do this
 #[wasm_bindgen]
@@ -54,4 +56,9 @@ pub fn gen_custom_simple_name(
 #[wasm_bindgen]
 pub fn mamobibu() -> String {
     gen_mamobibu_name()
+}
+
+#[wasm_bindgen]
+pub fn saurian() -> String {
+    gen_saurian_name()
 }
