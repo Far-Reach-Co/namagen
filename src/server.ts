@@ -1,5 +1,5 @@
-import { Application, Context } from "https://deno.land/x/oak@v11.1.0/mod.ts";
-import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
+import { Application, Context } from "https://deno.land/x/oak/mod.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 
 import routes from "./routes/index.ts";
 
@@ -16,6 +16,8 @@ const logging = async (ctx: Context, next: Function) => {
 
 app.use(logging);
 
+app.use(routes.documentation.allowedMethods());
+app.use(routes.documentation.routes());
 app.use(routes.generator.allowedMethods());
 app.use(routes.generator.routes());
 
