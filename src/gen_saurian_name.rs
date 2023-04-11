@@ -134,5 +134,27 @@ pub fn gen_saurian_name() -> String {
         }
     }
 
+    // Potentially add a final grapheme or two
+    if random() {
+        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
+        generated_name.push_str(&random_consonant);
+        most_recent_grapheme = "consonant";
+    } else if random() {
+        let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
+        generated_name.push_str(&random_vowel);
+    } else {
+        let random_vowel: String = vowel_and_syllabic_inventory
+            .choose(&mut rng)
+            .unwrap()
+            .to_string();
+        generated_name.push_str(&random_vowel);
+    }
+
+    if most_recent_grapheme == "vowel" && random() {
+        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
+        generated_name.push_str(&random_consonant);
+    }
+
+    // Return generated name as String
     generated_name.to_string()
 }
