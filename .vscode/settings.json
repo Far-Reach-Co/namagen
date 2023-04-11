@@ -1,7 +1,3 @@
 {
-    "rust-analyzer.linkedProjects": [
-        "./Cargo.toml",
-        "./Cargo.toml"
-    ],
     "deno.enable": true
 }
