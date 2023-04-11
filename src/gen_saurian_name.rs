@@ -101,6 +101,15 @@ pub fn gen_saurian_name() -> String {
             }
         } else {
             if random() {
+                let random_consonant: String =
+                    consonant_inventory.choose(&mut rng).unwrap().to_string();
+                generated_name.push_str(&random_consonant);
+                if most_recent_grapheme == "consonant" {
+                    two_vowels_or_consonants_in_a_row = true
+                } else {
+                    most_recent_grapheme = "consonant";
+                }
+            } else if random() {
                 let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
                 generated_name.push_str(&random_vowel);
                 if most_recent_grapheme == "consonant" {
@@ -109,7 +118,7 @@ pub fn gen_saurian_name() -> String {
                 } else {
                     two_vowels_or_consonants_in_a_row = true
                 }
-            } else if random() {
+            } else {
                 let random_vowel: String = vowel_and_syllabic_inventory
                     .choose(&mut rng)
                     .unwrap()
@@ -120,15 +129,6 @@ pub fn gen_saurian_name() -> String {
                     most_recent_grapheme = "vowel";
                 } else {
                     two_vowels_or_consonants_in_a_row = true
-                }
-            } else {
-                let random_consonant: String =
-                    consonant_inventory.choose(&mut rng).unwrap().to_string();
-                generated_name.push_str(&random_consonant);
-                if most_recent_grapheme == "consonant" {
-                    two_vowels_or_consonants_in_a_row = true
-                } else {
-                    most_recent_grapheme = "consonant";
                 }
             }
         }
