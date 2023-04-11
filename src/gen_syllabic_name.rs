@@ -1,5 +1,5 @@
 use crate::gen_simple_syllable::gen_simple_syllable;
-use rand::seq::SliceRandom;
+use rand::{random, seq::SliceRandom};
 
 pub fn gen_syllabic_name(
     consonant_inventory: Vec<&str>,
@@ -29,8 +29,10 @@ pub fn gen_syllabic_name(
         generated_syllables += 1
     }
 
-    let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-    generated_name.push_str(&random_consonant);
+    if random() {
+        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
+        generated_name.push_str(&random_consonant);
+    }
 
     generated_name.to_string()
 }
