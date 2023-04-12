@@ -1,10 +1,9 @@
-// @deno-types="../../namagen/namagen.d.ts"
-import { greet } from "../../namagen/namagen.js";
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+import documentationController from "../controllers/documentationController.ts";
 
 const router = new Router();
 
-router.get("/", "You have successfully pinged the Namagen API =)");
-router.get("/greet", greet);
+router.get("/", documentationController.index);
+router.get("/greet", documentationController.returnGreeting);
 
 export default router;
