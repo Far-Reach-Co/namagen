@@ -3,6 +3,8 @@ mod gen_saurian_name;
 mod gen_simple_name;
 mod gen_simple_syllable;
 mod gen_syllabic_name;
+mod get_saurian_alphabet;
+mod trans_to_basic_latin;
 use crate::gen_syllabic_name::gen_syllabic_name;
 use gen_mamobibu_name::gen_mamobibu_name;
 use gen_saurian_name::gen_saurian_name;
