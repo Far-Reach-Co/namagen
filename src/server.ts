@@ -1,9 +1,8 @@
-import { Application, Context } from "https://deno.land/x/oak/mod.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
+import { Application, Context } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
 import routes from "./routes/index.ts";
 
-const port = parseInt(config()["PORT"]);
+const port = 8000;
 
 const app = new Application();
 
