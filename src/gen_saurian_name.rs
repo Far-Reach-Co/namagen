@@ -9,7 +9,7 @@ pub fn gen_saurian_name() -> String {
     let vowel_and_syllabic_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩", "š̩"];
     let vowel_inventory = vec!["a", "i", "u"];
     let mut rng = thread_rng();
-    let syllables_per_name = rng.gen_range(1..5);
+    let syllables_per_name = rng.gen_range(1..4);
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
