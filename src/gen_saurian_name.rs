@@ -72,7 +72,7 @@ pub fn gen_saurian_name() -> String {
     }
 
     // Add letters until syllable count is reached
-    while generated_syllables < syllables_per_name && generated_name.chars().count() < 10 {
+    while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
         if two_vowels_or_consonants_in_a_row == true {
             if most_recent_grapheme == "consonant" {
                 if random() && random() {
