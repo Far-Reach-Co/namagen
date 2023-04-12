@@ -1,10 +1,9 @@
-// @deno-types="../../namagen/namagen.d.ts"
-import { mamobibu, saurian } from "../../namagen/namagen.js";
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+import generatorController from "../controllers/generatorController.ts";
 
 const router = new Router();
 
-router.get("/mamobibu", mamobibu);
-router.get("/saurian", saurian);
+router.get("/mamobibu", generatorController.genSaurianName);
+router.get("/saurian", generatorController.genSaurianName);
 
 export default router;
