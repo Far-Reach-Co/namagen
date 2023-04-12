@@ -13,5 +13,5 @@ pub fn trans_to_basic_latin<'a>(
     if language == "Saurian" {
         // Replace each instance of the letter 'e' in chars with the letter 'a'
     }
-    chars
+    word_to_transliterate
 }
