@@ -3,7 +3,7 @@ import generatorController from "../controllers/generatorController.ts";
 
 const router = new Router();
 
-router.get("/mamobibu", generatorController.genSaurianName);
+router.get("/mamobibu", generatorController.genMamobibuName);
 router.get("/saurian", generatorController.genSaurianName);
 
 export default router;
