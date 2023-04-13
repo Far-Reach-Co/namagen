@@ -13,7 +13,6 @@ fn assemble_grapheme_inventory<'a>(letters: Vec<(&'a str, &'a str, i32)>) -> Vec
     grapheme_inventory
 }
 pub fn gen_saurian_name() -> String {
-
     let consonant_inventory = assemble_grapheme_inventory(get_saurian_consonsants());
     let vowel_and_syllabic_inventory =
         assemble_grapheme_inventory(get_saurian_vowels_and_syllabics());
@@ -36,14 +35,13 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "consonant";
 
         if generated_name == "'" {
-            generated_name = String::from("");
             // lazy
             let random_vowel: String = vowel_inventory
                 .choose(&mut rng)
                 .unwrap()
                 .to_string()
                 .to_uppercase();
-            generated_name.push_str(&random_vowel);
+            generated_name = random_vowel;
             most_recent_grapheme = "vowel";
         };
     } else if random() && random() {
