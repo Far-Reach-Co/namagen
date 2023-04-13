@@ -27,7 +27,6 @@ pub fn trans_to_basic_latin<'a>(
                 || c == 'ṣ'
                 || c == 'q'
                 || c == 'r'
-                || c == 'r'
                 || c == 'ḍ'
                 || c == 'ẓ'
         }) != None
