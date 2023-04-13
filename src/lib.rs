@@ -85,9 +85,9 @@ pub fn saurian() -> String {
     let saurian_name_basic_latin =
         trans_to_basic_latin(&saurian_name, "Saurian", get_saurian_alphabet());
     // lazy
-    r#"{"saurianName":""#.to_string()
+    "{'saurianName':'".to_string()
         + &saurian_name
-        + r#"", "saurianNameBasicLatin ":""#
+        + "', 'saurianNameBasicLatin':'"
         + &saurian_name_basic_latin
-        + r#""}"#
+        + "'}"
 }
