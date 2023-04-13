@@ -21,6 +21,7 @@ pub fn gen_simple_name(
         generated_name.push_str(&random_consonant);
         most_recent_grapheme = "consonant";
     } else {
+        // lazy
         let random_vowel: String = vowel_inventory
             .choose(&mut rng)
             .unwrap()

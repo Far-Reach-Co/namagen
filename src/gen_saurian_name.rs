@@ -27,6 +27,7 @@ pub fn gen_saurian_name() -> String {
 
         if generated_name == "'" {
             generated_name = String::from("");
+            // lazy
             let random_vowel: String = vowel_inventory
                 .choose(&mut rng)
                 .unwrap()
