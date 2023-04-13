@@ -82,8 +82,7 @@ pub fn mamobibu() -> String {
 #[wasm_bindgen]
 pub fn saurian() -> String {
     let saurian_name = gen_saurian_name();
-    let saurian_name_basic_latin =
-        trans_to_basic_latin(&saurian_name, "Saurian", get_saurian_alphabet());
+    let saurian_name_basic_latin = trans_to_basic_latin("test", "Saurian", get_saurian_alphabet());
     // lazy
     "{'saurianName':'".to_string()
         + &saurian_name
