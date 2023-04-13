@@ -1,13 +1,23 @@
 use rand::Rng;
 use rand::{random, seq::SliceRandom, thread_rng};
 
+use crate::get_saurian_alphabet::{
+    get_saurian_consonsants, get_saurian_true_vowels, get_saurian_vowels_and_syllabics,
+};
+
+fn assemble_grapheme_inventory<'a>(letters: Vec<(&'a str, &'a str, i32)>) -> Vec<&'a str> {
+    let mut grapheme_inventory = vec![""];
+    for letter in letters {
+        grapheme_inventory.push(letter.0)
+    }
+    grapheme_inventory
+}
+
 pub fn gen_saurian_name() -> String {
-    let consonant_inventory = vec![
-        "'", "p", "j", "d", "h", "w", "z", "ħ", "ṭ", "y", "k", "l", "n", "s", "ƹ", "f", "ṣ", "q",
-        "r", "š", "t", "θ", "x", "ð", "ḍ", "ẓ", "ɣ",
-    ];
-    let vowel_and_syllabic_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩", "š̩"];
-    let vowel_inventory = vec!["a", "i", "u"];
+    let consonant_inventory = assemble_grapheme_inventory(get_saurian_consonsants());
+    let vowel_and_syllabic_inventory =
+        assemble_grapheme_inventory(get_saurian_vowels_and_syllabics());
+    let vowel_inventory = assemble_grapheme_inventory(get_saurian_true_vowels());
     let mut rng = thread_rng();
     let syllables_per_name = rng.gen_range(1..4);
     let mut most_recent_grapheme = "";
