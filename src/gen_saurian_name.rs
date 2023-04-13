@@ -3,7 +3,7 @@ use rand::{random, seq::SliceRandom, thread_rng};
 
 pub fn gen_saurian_name() -> String {
     let consonant_inventory = vec![
-        "'", "p", "j", "d", "h", "w", "z", "ħ", "ṭ", "y", "k", "l", "n", "s", "ƹ", "f", "ṣ", "q",
+        "'", "p", "j", "d", "h", "w", "z", "ħ", "ṭ", "y", "k", "l", "n", "s", "ɛ", "f", "ṣ", "q",
         "r", "š", "t", "θ", "x", "ð", "ḍ", "ẓ", "ɣ",
     ];
     let vowel_and_syllabic_inventory = vec!["a", "i", "u", "f̩", "l̩", "r̩", "s̩", "š̩"];

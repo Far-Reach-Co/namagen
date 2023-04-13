@@ -21,7 +21,7 @@ pub fn trans_to_basic_latin<'a>(
     // lazy
     if language == "Saurian"
         && word_to_transliterate.find(|c: char| {
-            c == 'ƹ'
+            c == 'ɛ'
                 || c == 'h'
                 || c == 'ṭ'
                 || c == 'ṣ'
