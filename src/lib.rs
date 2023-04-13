@@ -87,7 +87,7 @@ pub fn saurian() -> String {
     // lazy
     r#"{"saurianName":""#.to_string()
         + &saurian_name
-        + r#"", "saurianNameBasicLatin":""#
+        + r#"", "saurianNameBasicLatin ":""#
         + &saurian_name_basic_latin
         + r#""}"#
 }
