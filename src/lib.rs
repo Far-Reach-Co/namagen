@@ -52,11 +52,12 @@ pub fn custom_simple_name(
 ) -> String {
     let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
     let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
-    gen_simple_name(
+    let custom_simple_name = gen_simple_name(
         consonant_inventory.to_owned(),
         vowel_inventory.to_owned(),
         syllables_per_name,
-    )
+    );
+    "custom_simple_name:".to_string() + &custom_simple_name
 }
 
 #[wasm_bindgen]
@@ -67,16 +68,18 @@ pub fn custom_syllabic_name(
 ) -> String {
     let consonant_inventory: Vec<&str> = consonant_inventory.split(',').collect();
     let vowel_inventory: Vec<&str> = vowel_inventory.split(',').collect();
-    gen_syllabic_name(
+    let custom_syllabic_name = gen_syllabic_name(
         consonant_inventory.to_owned(),
         vowel_inventory.to_owned(),
         syllables_per_name,
-    )
+    );
+    "custom_syllabic_name:".to_string() + &custom_syllabic_name
 }
 
 #[wasm_bindgen]
 pub fn mamobibu() -> String {
-    gen_mamobibu_name()
+    let mamobibu_name = gen_mamobibu_name();
+    "mamobibu_name:".to_string() + &mamobibu_name
 }
 
 #[wasm_bindgen]
@@ -84,10 +87,8 @@ pub fn saurian() -> String {
     let saurian_name = gen_saurian_name();
     let saurian_name_basic_latin =
         trans_to_basic_latin(&saurian_name, "Saurian", get_saurian_alphabet());
-    // lazy
-    "{'saurianName':'".to_string()
+    "saurian_name:".to_string()
         + &saurian_name
-        + "', 'saurianNameBasicLatin':'"
+        + ",saurianNameBasicLatin:"
         + &saurian_name_basic_latin
-        + "'}"
 }
