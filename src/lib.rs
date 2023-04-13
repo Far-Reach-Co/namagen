@@ -9,6 +9,8 @@ use crate::gen_syllabic_name::gen_syllabic_name;
 use gen_mamobibu_name::gen_mamobibu_name;
 use gen_saurian_name::gen_saurian_name;
 use gen_simple_name::gen_simple_name;
+use get_saurian_alphabet::get_saurian_alphabet;
+use trans_to_basic_latin::trans_to_basic_latin;
 use wasm_bindgen::prelude::*;
 
 // Just a reminder to myself of how to do this
@@ -79,5 +81,13 @@ pub fn mamobibu() -> String {
 
 #[wasm_bindgen]
 pub fn saurian() -> String {
-    gen_saurian_name()
+    let saurian_name = gen_saurian_name();
+    let saurian_name_basic_latin =
+        trans_to_basic_latin(&saurian_name, "Saurian", get_saurian_alphabet());
+    // lazy
+    "{'saurianName':'".to_string()
+        + &saurian_name
+        + "', 'saurianNameBasicLatin':'"
+        + &saurian_name_basic_latin
+        + "'}"
 }
