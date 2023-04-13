@@ -7,7 +7,14 @@ const genMamobibuName = (ctx: Context, next: Function) => {
 };
 
 const genSaurianName = (ctx: Context, next: Function) => {
-  ctx.response.body = { "result": saurian() };
+  const generatedName = saurian();
+  const results = generatedName.split(",");
+  const saurianName = results[0].split(":")[1];
+  const saurianNameBasicLatin = results[1].split(":")[1];
+  ctx.response.body = {
+    "saurianName": saurianName,
+    "saurianNameBasicLatin": saurianNameBasicLatin,
+  };
 };
 
 export default {
