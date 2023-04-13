@@ -9,6 +9,7 @@ pub fn trans_to_basic_latin<'a>(
             word_basic_latin = word_basic_latin.replace(letter.0, letter.1)
         }
     }
+    word_basic_latin = word_basic_latin.replace("̩̩", "");
     // lazy
     if language == "Saurian"
         && word_to_transliterate.find(|c: char| {
