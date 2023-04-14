@@ -36,11 +36,23 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "consonant";
 
         if generated_name == "'" {
-            generated_name = vowel_inventory
-                .choose(&mut rng)
-                .unwrap()
-                .to_string()
-                .to_uppercase();
+            if random() && random() {
+                generated_name.push_str(
+                    &vowel_and_syllabic_inventory
+                        .choose(&mut rng)
+                        .unwrap()
+                        .to_string()
+                        .to_uppercase(),
+                );
+            } else {
+                generated_name.push_str(
+                    &vowel_inventory
+                        .choose(&mut rng)
+                        .unwrap()
+                        .to_string()
+                        .to_uppercase(),
+                );
+            }
             most_recent_grapheme = "vowel";
         };
     } else if random() && random() {
