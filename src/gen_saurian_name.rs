@@ -26,104 +26,78 @@ pub fn gen_saurian_name() -> String {
 
     // Generate first letter
     if random() {
-        let random_consonant: String = consonant_inventory
-            .choose(&mut rng)
-            .unwrap()
-            .to_string()
-            .to_uppercase();
-        generated_name.push_str(&random_consonant);
+        generated_name.push_str(
+            &consonant_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
         most_recent_grapheme = "consonant";
 
         if generated_name == "'" {
-            // lazy
-            let random_vowel: String = vowel_inventory
+            generated_name = vowel_inventory
                 .choose(&mut rng)
                 .unwrap()
                 .to_string()
                 .to_uppercase();
-            generated_name = random_vowel;
             most_recent_grapheme = "vowel";
         };
     } else if random() && random() {
-        let random_vowel: String = vowel_and_syllabic_inventory
-            .choose(&mut rng)
-            .unwrap()
-            .to_string()
-            .to_uppercase();
-        generated_name.push_str(&random_vowel);
+        generated_name.push_str(
+            &vowel_and_syllabic_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
         most_recent_grapheme = "vowel";
     } else {
-        let random_vowel: String = vowel_inventory
-            .choose(&mut rng)
-            .unwrap()
-            .to_string()
-            .to_uppercase();
-        generated_name.push_str(&random_vowel);
+        generated_name.push_str(
+            &vowel_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
         most_recent_grapheme = "vowel";
     }
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
-    if most_recent_grapheme == "consonant" {
+    if most_recent_grapheme == "vowel" {
+        // Do nothing (this is written this way for troubleshooting)
+    } else {
         if random() && random() {
-            let random_vowel: String = vowel_and_syllabic_inventory
-                .choose(&mut rng)
-                .unwrap()
-                .to_string();
-            generated_name.push_str(&random_vowel);
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
+            generated_name.push_str(
+                &vowel_and_syllabic_inventory
+                    .choose(&mut rng)
+                    .unwrap()
+                    .to_string(),
+            );
         } else {
-            let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-            generated_name.push_str(&random_vowel);
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
+            generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
         }
+        most_recent_grapheme = "vowel";
+        generated_syllables += 1;
     }
 
     // Add letters until syllable count is reached
     while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
-        if two_vowels_or_consonants_in_a_row == true {
-            if most_recent_grapheme == "consonant" {
-                if random() && random() {
-                    let random_vowel: String = vowel_and_syllabic_inventory
-                        .choose(&mut rng)
-                        .unwrap()
-                        .to_string();
-                    generated_name.push_str(&random_vowel);
-                    generated_syllables += 1;
-                    most_recent_grapheme = "vowel";
-                    two_vowels_or_consonants_in_a_row = false;
-                } else {
-                    let random_vowel: String =
-                        vowel_inventory.choose(&mut rng).unwrap().to_string();
-                    generated_name.push_str(&random_vowel);
-                    generated_syllables += 1;
-                    most_recent_grapheme = "vowel";
-                    two_vowels_or_consonants_in_a_row = false;
-                }
-            } else {
-                let random_consonant: String =
-                    consonant_inventory.choose(&mut rng).unwrap().to_string();
-                generated_name.push_str(&random_consonant);
-                most_recent_grapheme = "consonant";
-                two_vowels_or_consonants_in_a_row = false;
-            }
-        } else {
+        if two_vowels_or_consonants_in_a_row == false {
             if random() {
-                let random_consonant: String =
-                    consonant_inventory.choose(&mut rng).unwrap().to_string();
-                generated_name.push_str(&random_consonant);
+                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
                 if most_recent_grapheme == "consonant" {
                     two_vowels_or_consonants_in_a_row = true
                 } else {
                     most_recent_grapheme = "consonant";
                 }
             } else if random() && random() {
-                let random_vowel: String = vowel_and_syllabic_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string();
-                generated_name.push_str(&random_vowel);
+                generated_name.push_str(
+                    &vowel_and_syllabic_inventory
+                        .choose(&mut rng)
+                        .unwrap()
+                        .to_string(),
+                );
                 if most_recent_grapheme == "consonant" {
                     generated_syllables += 1;
                     most_recent_grapheme = "vowel";
@@ -131,8 +105,7 @@ pub fn gen_saurian_name() -> String {
                     two_vowels_or_consonants_in_a_row = true
                 }
             } else {
-                let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-                generated_name.push_str(&random_vowel);
+                generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
                 if most_recent_grapheme == "consonant" {
                     generated_syllables += 1;
                     most_recent_grapheme = "vowel";
@@ -140,28 +113,45 @@ pub fn gen_saurian_name() -> String {
                     two_vowels_or_consonants_in_a_row = true
                 }
             }
+        } else {
+            if most_recent_grapheme == "consonant" {
+                if random() && random() {
+                    generated_name.push_str(
+                        &vowel_and_syllabic_inventory
+                            .choose(&mut rng)
+                            .unwrap()
+                            .to_string(),
+                    );
+                } else {
+                    generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+                }
+                generated_syllables += 1;
+                most_recent_grapheme = "vowel";
+            } else {
+                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
+                most_recent_grapheme = "consonant";
+            }
+            two_vowels_or_consonants_in_a_row = false;
         }
     }
 
     // Potentially add a final grapheme or two
     if random() {
-        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_consonant);
+        generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
         most_recent_grapheme = "consonant";
     } else if random() && random() {
-        let random_vowel: String = vowel_and_syllabic_inventory
-            .choose(&mut rng)
-            .unwrap()
-            .to_string();
-        generated_name.push_str(&random_vowel);
+        generated_name.push_str(
+            &vowel_and_syllabic_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string(),
+        );
     } else {
-        let random_vowel: String = vowel_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_vowel);
+        generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
     }
 
     if most_recent_grapheme == "vowel" && random() {
-        let random_consonant: String = consonant_inventory.choose(&mut rng).unwrap().to_string();
-        generated_name.push_str(&random_consonant);
+        generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
     }
 
     // Return generated name as String
