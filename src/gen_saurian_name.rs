@@ -19,10 +19,14 @@ pub fn gen_saurian_name() -> String {
     let vowel_inventory = assemble_grapheme_inventory(get_saurian_true_vowels());
     let mut rng = thread_rng();
     let syllables_per_name = rng.gen_range(1..4);
-    let mut most_recent_grapheme = "";
+    let mut most_recent_grapheme = "consonant";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
     let mut generated_name = String::from("");
+
+    if most_recent_grapheme != "consonant" {
+        return "What???".to_string();
+    }
 
     // Generate first letter
     if random() {
@@ -74,21 +78,22 @@ pub fn gen_saurian_name() -> String {
         );
         most_recent_grapheme = "vowel";
     }
+    let test = generated_name + " " + most_recent_grapheme + "k";
+    return test;
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
-    if most_recent_grapheme == "vowel" {
-        // Do nothing (this is written this way for troubleshooting)
+    if most_recent_grapheme == "consonant" {
     } else {
-        if random() && random() {
-            generated_name.push_str(
-                &vowel_and_syllabic_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string(),
-            );
-        } else {
-            generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
-        }
+        // if random() && random() {
+        //     generated_name.push_str(
+        //         &vowel_and_syllabic_inventory
+        //             .choose(&mut rng)
+        //             .unwrap()
+        //             .to_string(),
+        //     );
+        // } else {
+        generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+        // }
         most_recent_grapheme = "vowel";
         generated_syllables += 1;
     }
