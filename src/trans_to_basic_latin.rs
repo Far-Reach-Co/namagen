@@ -11,6 +11,7 @@ pub fn trans_to_basic_latin<'a>(
         None => String::new(),
         Some(char) => char.to_lowercase().collect::<String>() + chars.as_str(),
     };
+    let word_to_transliterate_lowercase = word_basic_latin.to_owned();
 
     for letter in alphabet {
         if letter.0 != letter.1 {
@@ -21,7 +22,7 @@ pub fn trans_to_basic_latin<'a>(
     word_basic_latin = word_basic_latin.replace("̩", "");
     // lazy
     if language == "Saurian"
-        && word_to_transliterate.find(|c: char| {
+        && word_to_transliterate_lowercase.find(|c: char| {
             c == 'ɛ'
                 || c == 'h'
                 || c == 'ṭ'
