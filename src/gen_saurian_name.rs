@@ -22,58 +22,59 @@ pub fn gen_saurian_name() -> String {
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
-    let mut generated_name = String::from("");
+    let mut generated_name = most_recent_grapheme.to_string();
 
     // While loop is a temporary workaround for missing an uppercase letter at start of word
-    while generated_name == "" {
-        // Generate first letter
-        if random() {
-            generated_name.push_str(
-                &consonant_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string()
-                    .to_uppercase(),
-            );
-            most_recent_grapheme = "consonant";
+    // Maybe this will be fully fixed when I rewrite this using recursion
+    // while generated_name == "" {
+    // Generate first letter
+    if random() {
+        generated_name.push_str(
+            &consonant_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
+        most_recent_grapheme = "consonant";
 
-            if generated_name == "'" {
-                if random() && random() {
-                    generated_name.push_str(
-                        &vowel_and_syllabic_inventory
-                            .choose(&mut rng)
-                            .unwrap()
-                            .to_string()
-                            .to_uppercase(),
-                    );
-                } else {
-                    generated_name = vowel_inventory
+        if generated_name == "'" {
+            if random() && random() {
+                generated_name.push_str(
+                    &vowel_and_syllabic_inventory
                         .choose(&mut rng)
                         .unwrap()
                         .to_string()
-                        .to_uppercase();
-                }
-                most_recent_grapheme = "vowel";
-            };
-        } else if random() && random() {
-            generated_name.push_str(
-                &vowel_and_syllabic_inventory
+                        .to_uppercase(),
+                );
+            } else {
+                generated_name = vowel_inventory
                     .choose(&mut rng)
                     .unwrap()
                     .to_string()
-                    .to_uppercase(),
-            );
+                    .to_uppercase();
+            }
             most_recent_grapheme = "vowel";
-        } else {
-            generated_name.push_str(
-                &vowel_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string()
-                    .to_uppercase(),
-            );
-            most_recent_grapheme = "vowel";
-        }
+        };
+    } else if random() && random() {
+        generated_name.push_str(
+            &vowel_and_syllabic_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
+        most_recent_grapheme = "vowel";
+    } else {
+        generated_name.push_str(
+            &vowel_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string()
+                .to_uppercase(),
+        );
+        most_recent_grapheme = "vowel";
+        // }
     }
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
