@@ -9,7 +9,7 @@ pub fn gen_simple_name(
     let mut most_recent_grapheme = "";
     let mut generated_syllables = 0;
     let mut two_vowels_or_consonants_in_a_row = false;
-    let mut generated_name = String::from("");
+    let mut generated_name = most_recent_grapheme.to_string();
 
     // Generate first letter
     if random() {

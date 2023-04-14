@@ -22,9 +22,10 @@ pub fn gen_saurian_name() -> String {
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
-    let mut generated_name = String::from("");
+    let mut generated_name = most_recent_grapheme.to_string();
 
     // While loop is a temporary workaround for missing an uppercase letter at start of word
+    // Maybe this will be fully fixed when I rewrite this using recursion
     while generated_name == "" {
         // Generate first letter
         if random() {

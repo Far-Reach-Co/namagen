@@ -90,14 +90,7 @@ pub fn get_saurian_true_vowels() -> Vec<(&'static str, &'static str, i32)> {
 
 pub fn get_saurian_vowels_and_syllabics() -> Vec<(&'static str, &'static str, i32)> {
     // Tuples are of the form (default_grapheme, basic_grapheme, frequency_of_occurrance)
-    vec![
-        ("a", "e", 12),
-        ("i", "i", 12),
-        ("u", "u", 12),
-        ("f̩", "f", 2),
-        ("l̩", "l", 4),
-        ("r̩", "rr", 8),
-        ("s̩", "s", 3),
-        ("š̩", "sh", 3),
-    ]
+    let mut result = get_saurian_true_vowels();
+    result.append(&mut get_saurian_syllabics());
+    result
 }
