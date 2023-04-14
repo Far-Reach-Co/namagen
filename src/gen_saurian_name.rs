@@ -78,7 +78,7 @@ pub fn gen_saurian_name() -> String {
     }
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
-    if most_recent_grapheme == "consonant" {
+    if most_recent_grapheme != "vowel" {
     } else {
         if random() && random() {
             generated_name.push_str(
