@@ -36,7 +36,6 @@ pub fn gen_saurian_name() -> String {
         most_recent_grapheme = "consonant";
 
         if generated_name == "'" {
-            // lazy
             generated_name = vowel_inventory
                 .choose(&mut rng)
                 .unwrap()
@@ -73,13 +72,11 @@ pub fn gen_saurian_name() -> String {
                     .unwrap()
                     .to_string(),
             );
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
         } else {
             generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
-            generated_syllables += 1;
-            most_recent_grapheme = "vowel";
         }
+        most_recent_grapheme = "vowel";
+        generated_syllables += 1;
     }
 
     // Add letters until syllable count is reached
@@ -93,20 +90,16 @@ pub fn gen_saurian_name() -> String {
                             .unwrap()
                             .to_string(),
                     );
-                    generated_syllables += 1;
-                    most_recent_grapheme = "vowel";
-                    two_vowels_or_consonants_in_a_row = false;
                 } else {
                     generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
-                    generated_syllables += 1;
-                    most_recent_grapheme = "vowel";
-                    two_vowels_or_consonants_in_a_row = false;
                 }
+                generated_syllables += 1;
+                most_recent_grapheme = "vowel";
             } else {
                 generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
                 most_recent_grapheme = "consonant";
-                two_vowels_or_consonants_in_a_row = false;
             }
+            two_vowels_or_consonants_in_a_row = false;
         } else {
             if random() {
                 generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
