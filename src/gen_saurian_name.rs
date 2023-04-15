@@ -97,6 +97,8 @@ pub fn gen_saurian_name() -> String {
                 .choose(&mut rng)
                 .unwrap()
                 .to_string();
+        } else if rng.gen_range(1..4) == 4 {
+            result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
         } else {
             result = vowel_inventory.choose(&mut rng).unwrap().to_string();
         }
@@ -123,6 +125,8 @@ pub fn gen_saurian_name() -> String {
                         .choose(&mut rng)
                         .unwrap()
                         .to_string();
+                } else if rng.gen_range(1..8) == 8 {
+                    result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
                 } else {
                     result = vowel_inventory.choose(&mut rng).unwrap().to_string();
                 }
@@ -164,6 +168,8 @@ pub fn gen_saurian_name() -> String {
                 if result == "" {
                     result = "l̩".to_string()
                 }
+            } else if rng.gen_range(1..8) == 8 {
+                result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
             } else {
                 result = vowel_inventory.choose(&mut rng).unwrap().to_string();
                 if most_recent_grapheme == "consonant" {
@@ -191,6 +197,8 @@ pub fn gen_saurian_name() -> String {
                 .unwrap()
                 .to_string(),
         );
+    } else if rng.gen_range(1..8) == 8 {
+        generated_name.push_str(&["l̩", "r̩"].choose(&mut rng).unwrap().to_string());
     } else {
         generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
     }
