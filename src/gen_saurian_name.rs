@@ -22,9 +22,8 @@ pub fn gen_saurian_name() -> String {
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
-    let mut generated_name = most_recent_grapheme.to_string();
     let mut result = most_recent_grapheme.to_string();
-    let mut temp_most_recent_grapheme = most_recent_grapheme;
+    let mut generated_name = result;
 
     // While loop is a temporary workaround for missing an uppercase letter at start of word
     // Maybe this will be fully fixed when I rewrite this using recursion
@@ -80,22 +79,24 @@ pub fn gen_saurian_name() -> String {
     }
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
-    // While loop is a temporary workaround
-    while result == "" {
-        if most_recent_grapheme != "vowel" {
-            if random() && random() {
-                result = vowel_and_syllabic_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string();
-            } else {
-                result = vowel_inventory.choose(&mut rng).unwrap().to_string();
-            }
-            temp_most_recent_grapheme = "vowel";
-            generated_syllables += 1;
+    // Result exploit is a temporary workaround
+    if most_recent_grapheme != "vowel" {
+        if random() && random() {
+            result = vowel_and_syllabic_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string();
+        } else {
+            result = vowel_inventory.choose(&mut rng).unwrap().to_string();
         }
+        if result == "" {
+            generated_name.push_str("a")
+        } else {
+            generated_name.push_str(&result)
+        }
+        most_recent_grapheme = "vowel";
+        generated_syllables += 1;
     }
-    generated_name.push_str(&result);
 
     // Add letters until syllable count is reached
     while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
