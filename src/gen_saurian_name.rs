@@ -18,7 +18,15 @@ pub fn gen_saurian_name() -> String {
         assemble_grapheme_inventory(get_saurian_vowels_and_syllabics());
     let vowel_inventory = assemble_grapheme_inventory(get_saurian_true_vowels());
     let mut rng = thread_rng();
-    let syllables_per_name = rng.gen_range(1..4);
+    let mut max_chars = 8;
+    let syllables_per_name = if random() && random() {
+        2
+    } else {
+        if random() {
+            max_chars = rng.gen_range(4..8)
+        }
+        rng.gen_range(1..4)
+    };
     let mut most_recent_grapheme = "";
     let mut two_vowels_or_consonants_in_a_row = false;
     let mut generated_syllables = 0;
@@ -39,7 +47,7 @@ pub fn gen_saurian_name() -> String {
             most_recent_grapheme = "consonant";
 
             if generated_name == "'" {
-                if random() && random() {
+                if rng.gen_range(1..8) == 8 {
                     generated_name.push_str(
                         &vowel_and_syllabic_inventory
                             .choose(&mut rng)
@@ -56,7 +64,7 @@ pub fn gen_saurian_name() -> String {
                 }
                 most_recent_grapheme = "vowel";
             };
-        } else if random() && random() {
+        } else if rng.gen_range(1..8) == 8 {
             generated_name.push_str(
                 &vowel_and_syllabic_inventory
                     .choose(&mut rng)
@@ -78,91 +86,124 @@ pub fn gen_saurian_name() -> String {
     }
 
     // If first letter is a consonant, add second letter as a vowel (so we don't have names that start with two consonants like "Tdeneb")
+    // Result exploit is a temporary workaround
     if most_recent_grapheme != "vowel" {
-        if random() && random() {
-            generated_name.push_str(
-                &vowel_and_syllabic_inventory
-                    .choose(&mut rng)
-                    .unwrap()
-                    .to_string(),
-            );
+        let mut result = "".to_string();
+        if result != "" {
+            return "What??".to_string();
+        }
+        if rng.gen_range(1..4) == 4 {
+            result = vowel_and_syllabic_inventory
+                .choose(&mut rng)
+                .unwrap()
+                .to_string();
+        } else if rng.gen_range(1..4) == 4 {
+            result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
         } else {
-            generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+            result = vowel_inventory.choose(&mut rng).unwrap().to_string();
+        }
+        if result == "" {
+            generated_name.push_str("a")
+        } else {
+            generated_name.push_str(&result)
         }
         most_recent_grapheme = "vowel";
         generated_syllables += 1;
     }
 
     // Add letters until syllable count is reached
-    while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
-        if two_vowels_or_consonants_in_a_row == false {
+    // Result exploit is a temporary workaround
+    while generated_syllables < syllables_per_name && generated_name.chars().count() < max_chars {
+        let mut result = "".to_string();
+        if result != "" {
+            return "What??".to_string();
+        }
+        if two_vowels_or_consonants_in_a_row == true {
+            if most_recent_grapheme == "consonant" {
+                if rng.gen_range(1..8) == 8 {
+                    result = vowel_and_syllabic_inventory
+                        .choose(&mut rng)
+                        .unwrap()
+                        .to_string();
+                } else if rng.gen_range(1..8) == 8 {
+                    result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
+                } else {
+                    result = vowel_inventory.choose(&mut rng).unwrap().to_string();
+                }
+                if result == "" {
+                    result = "i".to_string();
+                }
+                generated_syllables += 1;
+                most_recent_grapheme = "vowel";
+            } else {
+                result = consonant_inventory.choose(&mut rng).unwrap().to_string();
+                if result == "" {
+                    result = "k".to_string()
+                }
+                most_recent_grapheme = "consonant";
+            }
+            two_vowels_or_consonants_in_a_row = false;
+        } else {
             if random() {
-                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
+                result = consonant_inventory.choose(&mut rng).unwrap().to_string();
                 if most_recent_grapheme == "consonant" {
                     two_vowels_or_consonants_in_a_row = true
                 } else {
                     most_recent_grapheme = "consonant";
                 }
-            } else if random() && random() {
-                generated_name.push_str(
-                    &vowel_and_syllabic_inventory
-                        .choose(&mut rng)
-                        .unwrap()
-                        .to_string(),
-                );
+                if result == "" {
+                    result = "n".to_string()
+                }
+            } else if rng.gen_range(1..6) == 5 {
+                result = vowel_and_syllabic_inventory
+                    .choose(&mut rng)
+                    .unwrap()
+                    .to_string();
                 if most_recent_grapheme == "consonant" {
                     generated_syllables += 1;
                     most_recent_grapheme = "vowel";
                 } else {
                     two_vowels_or_consonants_in_a_row = true
                 }
+                if result == "" {
+                    result = "l̩".to_string()
+                }
+            } else if rng.gen_range(1..8) == 8 {
+                result = ["l̩", "r̩"].choose(&mut rng).unwrap().to_string();
             } else {
-                generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+                result = vowel_inventory.choose(&mut rng).unwrap().to_string();
                 if most_recent_grapheme == "consonant" {
                     generated_syllables += 1;
                     most_recent_grapheme = "vowel";
                 } else {
                     two_vowels_or_consonants_in_a_row = true
                 }
-            }
-        } else {
-            if most_recent_grapheme == "consonant" {
-                if random() && random() {
-                    generated_name.push_str(
-                        &vowel_and_syllabic_inventory
-                            .choose(&mut rng)
-                            .unwrap()
-                            .to_string(),
-                    );
-                } else {
-                    generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+                if result == "" {
+                    result = "a".to_string()
                 }
-                generated_syllables += 1;
-                most_recent_grapheme = "vowel";
-            } else {
-                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
-                most_recent_grapheme = "consonant";
             }
-            two_vowels_or_consonants_in_a_row = false;
         }
+        generated_name.push_str(&result);
     }
 
     // Potentially add a final grapheme or two
-    if random() {
+    if random() && random() {
         generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
         most_recent_grapheme = "consonant";
-    } else if random() && random() {
+    } else if rng.gen_range(1..8) == 8 {
         generated_name.push_str(
             &vowel_and_syllabic_inventory
                 .choose(&mut rng)
                 .unwrap()
                 .to_string(),
         );
+    } else if rng.gen_range(1..8) == 8 {
+        generated_name.push_str(&["l̩", "r̩"].choose(&mut rng).unwrap().to_string());
     } else {
         generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
     }
 
-    if most_recent_grapheme == "vowel" && random() {
+    if most_recent_grapheme == "vowel" && random() && random() {
         generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
     }
 
