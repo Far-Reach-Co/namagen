@@ -96,8 +96,6 @@ pub fn gen_saurian_name() -> String {
         }
     }
     generated_name.push_str(&result);
-    result = "".to_string();
-    most_recent_grapheme = temp_most_recent_grapheme;
 
     // Add letters until syllable count is reached
     while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
