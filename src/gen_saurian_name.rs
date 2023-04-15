@@ -173,7 +173,7 @@ pub fn gen_saurian_name() -> String {
     }
 
     // Potentially add a final grapheme or two
-    if random() {
+    if random() && random() {
         generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
         most_recent_grapheme = "consonant";
     } else if random() && random() {
@@ -187,7 +187,7 @@ pub fn gen_saurian_name() -> String {
         generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
     }
 
-    if most_recent_grapheme == "vowel" && random() {
+    if most_recent_grapheme == "vowel" && random() && random() {
         generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
     }
 
