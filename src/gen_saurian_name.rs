@@ -100,7 +100,26 @@ pub fn gen_saurian_name() -> String {
 
     // Add letters until syllable count is reached
     while generated_syllables < syllables_per_name && generated_name.chars().count() < 8 {
-        if two_vowels_or_consonants_in_a_row == false {
+        if two_vowels_or_consonants_in_a_row == true {
+            if most_recent_grapheme == "consonant" {
+                if random() && random() {
+                    generated_name.push_str(
+                        &vowel_and_syllabic_inventory
+                            .choose(&mut rng)
+                            .unwrap()
+                            .to_string(),
+                    );
+                } else {
+                    generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
+                }
+                generated_syllables += 1;
+                most_recent_grapheme = "vowel";
+            } else {
+                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
+                most_recent_grapheme = "consonant";
+            }
+            two_vowels_or_consonants_in_a_row = false;
+        } else {
             if random() {
                 generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
                 if most_recent_grapheme == "consonant" {
@@ -130,25 +149,6 @@ pub fn gen_saurian_name() -> String {
                     two_vowels_or_consonants_in_a_row = true
                 }
             }
-        } else {
-            if most_recent_grapheme == "consonant" {
-                if random() && random() {
-                    generated_name.push_str(
-                        &vowel_and_syllabic_inventory
-                            .choose(&mut rng)
-                            .unwrap()
-                            .to_string(),
-                    );
-                } else {
-                    generated_name.push_str(&vowel_inventory.choose(&mut rng).unwrap().to_string());
-                }
-                generated_syllables += 1;
-                most_recent_grapheme = "vowel";
-            } else {
-                generated_name.push_str(&consonant_inventory.choose(&mut rng).unwrap().to_string());
-                most_recent_grapheme = "consonant";
-            }
-            two_vowels_or_consonants_in_a_row = false;
         }
     }
 
