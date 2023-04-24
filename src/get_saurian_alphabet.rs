@@ -15,7 +15,7 @@ pub fn get_saurian_consonsants() -> Vec<(&'static str, &'static str, i32)> {
         ("l", "l", 12),
         ("n", "n", 12),
         ("s", "s", 12),
-        ("ɛ", "aa", 12),
+        ("ƹ", "aa", 12),
         ("f", "f", 12),
         ("ṣ", "s", 12),
         ("q", "q", 12),
